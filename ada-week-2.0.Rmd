@@ -1,0 +1,149 @@
+---
+title: "ada-week-2.0"
+author: "Ingrid Lundeen"
+date: "September 15, 2016"
+output: html_document
+---
+
+m<-matrix(data=c(1,2,3,4),nrow=2,ncol=2) 
+m m<-matrix(data=c(1,2,3,4,5,6),nrow=2,ncol=3,byrow=TRUE) 
+m V1<-c(1,2,3,4) 
+V2<-c(6,7,8,9) 
+m1<-rbind(V1,V2) 
+m1 
+m2<-cbind(V1,V2) 
+m2 
+class(m1) 
+class(m2) 
+class(V1) 
+dim(m1) 
+dim(m2) 
+colnames(m2) 
+m2[,2] 
+rownames(m2) 
+str(m2) 
+#an array can have as many dimensions as you want - much more general of a structure 
+#here the data is a set of numbers from 1 to 90 divided into 3 dimensions 
+#here 5 is the number of rows per block, 6 is the number of columns per block, and 3 is the number of blocks 
+a<-array(data=1:90,dim=c(5,6,3)) 
+a v<-1:100 
+v 
+#using brackets to get out particular subsets of information from a matrix/array/etc 
+#you are asking for the vector from index position 1 to 15 
+v[1:15] 
+#you can also use a vector to pull out specific things 
+v[c(2,4,6,8,10)] 
+#you can also use a function or calc to subset a vector 
+v<-101:200 
+v[seq(from=1,to=100,by=2)]
+
+
+library(stringr)
+```{r}
+###CHALLENGE 1: create vector of first lines of gettysburg address + extract every third element of this vector
+library(stringr)
+
+ga<-"Four score and seven years ago our fathers brought forth on this continent a new nation conceived in Liberty and dedicated to the proposition that all men are created equal"
+split<-str_split(ga," ", simplify=TRUE)
+split
+
+option1<-matrix(data=split,ncol=3,nrow=10,byrow=TRUE) 
+option1
+option1[,1]
+
+option2<-split[seq(from=1, to=30, by=3)]
+option2
+```
+```{r}
+###Challenge 2
+m<-matrix(data=1:80,nrow=8,ncol=10,byrow=FALSE)
+m
+```
+```{r}
+##Given the matrix, m, above, extract the 2nd, 3rd, and 6th columns and assign them to the variable x
+two<-m[,2]
+three<-m[,3]
+six<-m[,6]
+x<-cbind(two,three,six)
+x
+```
+
+```{r}
+##Given the matrix, m, above, extract the 6th to 8th row and assign them to the variable x
+x<-m[6:8,]
+x
+```
+
+```{r}
+
+##Given the matrix, m, above, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x
+z<-m[,2:9]
+z
+
+x<-z[2:6,]
+x
+```
+
+```{r}
+###Challenge3 : Construct a 4-dimensional, 400 element array (5 x 5 x 4 x 4) named a consisting of the numbers 400 to 1 (i.e., a descending series)
+a<-array(data=400:1,dim=c(5,5,4,4))
+a
+```
+
+```{r}
+#Given this matrix, what would the following return?
+#a[1, 1, 1, 2]???
+a[1,1,1,2]
+
+#a[2, 3, 2, ]???
+a[2, 3, 2, ]
+
+#a[1:5, 1:5, 3, 3]??
+a[1:5, 1:5, 3, 3]
+```
+
+```{r}
+###CHALLENGE 4: simplified list of primate taxonomy 
+
+Anthropoidea<-list(Platyrrhini=c("Cebidae","Atelidae","Pitheciidae"),Catarrhini=c("Cercopithecidae","Hylobatidae","Hominidae"))
+Anthropoidea
+
+Tarsioidea<-c("Tarsiidae")
+Haplorhini<-list(Anthropoidea, Tarsioidea)
+names(Haplorhini)<-c("Anthropoidea","Tarsioidea")
+Strepsirrhini<-list(Lorisoidea=c("Lorisidae","Galagidae"),Lemuroidea=c("Cheirogaleidae","Lepilemuridae","Indriidae","Lemuridae","Daubentoniidae"))
+Primates<-list(Strepsirrhini=c(Strepsirrhini),Haplorhini=c(Haplorhini))
+Primates
+```
+
+```{r}
+###CHALLENGE 5: Store the following matrix: 3 0 1 23 1 2 33 1 1 42 0 1 41 0 2
+t<-matrix(data=c(3,0,1,23,1,2,33,1,1,42,0,1,41,0,2),nrow=5,ncol=3)
+t
+```
+
+```{r}
+#Coerce the matrix to a data frame.
+df_t<-as.data.frame(t)
+df_t
+```
+
+```{r}
+#As a data frame, coerce the second column to be logical-valued
+df_t$V2<-as.logical(df_t$V2)
+```
+
+```{r}
+#As a data frame, coerce the third column to be factor-valued
+df_t$V3<-as.factor(df_t$V3)
+df_t
+```
+
+
+?list to create a list use the list operator list()
+
+f<-file.choose() 
+df<-read.csv(f,sep=“,”,header=TRUE,stringsAsFactors=FALSE) 
+df 
+str(df) 
+df[,1] str(df[,1]) dflastNamestr(df[1])df["lastName"]str(df["lastName"])dflastNamestr(df[1])df["lastName"]str(df["lastName"])dfschool <- c(“COLA”, “COLA”, “COLA”, “CNS”, “CNS”, “COLA”, “COLA”, “iSchool”, “CNS”, “CNS”, “COLA”, “iSchool”, “COLA”) df new_df<-df[df$school==“COLA”, ] new_df new_df<-df[df$school==“COLA”,c(“lastName”,“firstName”,“school”)] new_df library(evaluate) update.packages(evaluate)
